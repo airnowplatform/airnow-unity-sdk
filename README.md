@@ -1,6 +1,6 @@
 Airnow Media Unity plugin
 ======
-> **Airnow Media Unity plugin 11.4.5 Documentation**
+> **Airnow Media Unity plugin 11.4.6 Documentation**
 
 ## Integrate the Airnow Media SDK for Unity
 
@@ -95,7 +95,7 @@ You can specify a desired maximum ad size, and the Airnow Media SDK will request
 ``` c#
 Airnow.RequestBanner(bannerAdUnit, position, maxAdSize);
 ```
-Use `Airnow.MaxAdSize` to set the maximum ad size::
+Use `Airnow.MaxAdSize` to set the maximum ad size:
 
 ``` c#
 Width320Height50
@@ -262,6 +262,47 @@ Airnow.DestroyRewardedAd (rewardedAdUnitId);
 • We recommend placing rewarded ads where your users are already engaging with in-app purchases or in locations where users may be seeking an in-app reward, such as the end of a game or at currency redemption points.
 
 • You can be notified that a rewarded ad was fetched successfully by implementing OnRewardedlLoadSuccessEvent. We highly recommend waiting for the OnRewardedLoadSuccessEvent callback before showing the rewarded ad. Waiting provides the ad enough time to load and show as expected.
+
+#### Regulation Advanced Settings
+##### GDPR – Managing Consent
+The Airnow Media SDK supports a client API that allows publishers to pass consent on behalf of their end users.
+
+To use the Airnow Media API to update the user's consent status, use this function:
+
+```c#
+Airnow.SetGdprConsent(state);
+```
+If the user has given consent, set the state `Airnow.Consent..ACCEPTED`.
+If the user did not consent, set the state `Airnow.Consent.REJECTED`.
+Otherwise, set the state to `Airnow.Consent.NOCONSENT`.
+
+> **Note**: `Airnow.Consent.NOCONSENT` is used as the default state.
+
+##### CCPA Compliance
+The Airnow Media SDK supports publishers to restrict the sale of end users personal information under the California Consumer Privacy Act (CCPA).
+
+If the user has opted out of “sale” of personal information:
+```c#
+Airnow.setCcpaConsent(false);
+```
+
+If “sale” of personal information is permitted:
+```c#
+Airnow.setCcpaConsent(true);
+```
+
+##### User-Level Settings for Child-Directed Apps with Age Gates
+The Airnow Media SDK enables publishers of child-directed apps to flag specific end-users as children, as may be permitted or required by applicable law (e.g. COPPA, GDPR, etc.).  Publishers of child-directed apps are responsible for determining whether an app is permitted to flag at the end-user level or must treat all end-users as children.  Publishers should consult with their legal counsel accordingly.
+
+If the end-user is a child (as defined by applicable regulations):
+```c#
+Airnow.setChildDirected(true);
+```
+If the end-user is not a child:
+```c#
+Airnow.setChildDirected(false);
+```
+
 
 #### Integration specifics for XCode (iOS, macOS, etc.)
 
