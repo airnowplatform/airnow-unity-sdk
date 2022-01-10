@@ -1,6 +1,6 @@
 Airnow Media Unity plugin
 ======
-> **Airnow Media Unity plugin 11.4.6 Documentation**
+> **Airnow Media Unity plugin 11.4.7 Documentation**
 
 ## Integrate the Airnow Media SDK for Unity
 
